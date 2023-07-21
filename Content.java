@@ -265,44 +265,7 @@ public class Content extends AppCompatActivity  {
                             putDataLike(counter,filename);
                             //update flag value
                             putDataVotes(true,name, filename);
-                            //read flag state after the guest 1st vote and logged in for 2nd time
-//                            RequestParams params1 = new RequestParams();
-//                            params1.add("guest",name);
-//                            params1.add("videofilename",filename);
-//
-//                            ManagerNetwork.postGuestVotes(params1, new JsonHttpResponseHandler(){
-//                                @Override
-//                                public void onStart() {
-//
-//                                    progressDialog = new ProgressDialog(Content.this);
-//                                    progressDialog.setMessage("Please wait...");
-//
-//                                    progressDialog.show();
-//                                }
-//                                @Override
-//                                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                                    super.onSuccess(statusCode, headers, response);
-//                                    try {
-//                                        voteResult = response.getBoolean("voted");
-//                                        flagResult = response.getBoolean("lastaction");
-//                                    }catch (JSONException e){
-//                                        e.printStackTrace();
-//                                    }
-//                                    voteSettings = getApplicationContext().getSharedPreferences(PREFS_VOTE, Context.MODE_PRIVATE);
-//                                    editor = voteSettings.edit();
-//                                    editor.putBoolean("voteResult",voteResult);
-//                                    editor.putBoolean("flagResult",flagResult);
-//                                    editor.apply();
-//                                }
-//                                @Override
-//                                public void onFinish() {
-//                                    super.onFinish();
-//                                    progressDialog.dismiss();
-//                                }
-//                            } );
-//                            voteSettings = getApplicationContext().getSharedPreferences(PREFS_VOTE, Context.MODE_PRIVATE);
-//                            //test2 store boolean value if current user vote +1 (true) or -1(false)
-//                            flagResult = voteSettings.getBoolean("flagResult",true);
+
                             flagResult = true;
                            // Toast.makeText(getApplicationContext(),"flagResult ++ "+flagResult,Toast.LENGTH_SHORT).show();
 
@@ -318,43 +281,7 @@ public class Content extends AppCompatActivity  {
                             //update flag value
                             putDataVotes(false, name, filename);
 
-//                            RequestParams params1 = new RequestParams();
-//                            params1.add("guest",name);
-//                            params1.add("videofilename",filename);
-//
-//                            ManagerNetwork.postGuestVotes(params1, new JsonHttpResponseHandler(){
-//                                @Override
-//                                public void onStart() {
-//
-//                                    progressDialog = new ProgressDialog(Content.this);
-//                                    progressDialog.setMessage("Please wait...");
-//
-//                                    progressDialog.show();
-//                                }
-//                                @Override
-//                                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                                    super.onSuccess(statusCode, headers, response);
-//                                    try {
-//                                        voteResult = response.getBoolean("voted");
-//                                        flagResult = response.getBoolean("lastaction");
-//                                    }catch (JSONException e){
-//                                        e.printStackTrace();
-//                                    }
-//                                    voteSettings = getApplicationContext().getSharedPreferences(PREFS_VOTE, Context.MODE_PRIVATE);
-//                                    editor = voteSettings.edit();
-//                                    editor.putBoolean("voteResult",voteResult);
-//                                    editor.putBoolean("flagResult",flagResult);
-//                                    editor.apply();
-//                                }
-//                                @Override
-//                                public void onFinish() {
-//                                    super.onFinish();
-//                                    progressDialog.dismiss();
-//                                }
-//                            } );
-//                            voteSettings = getApplicationContext().getSharedPreferences(PREFS_VOTE, Context.MODE_PRIVATE);
-//                            //test2 store boolean value if current user vote +1 (true) or -1(false)
-//                            flagResult = voteSettings.getBoolean("flagResult",false);
+
                             flagResult = false;
                           //  Toast.makeText(getApplicationContext(),"flagResult -- "+flagResult,Toast.LENGTH_SHORT).show();
 
@@ -434,42 +361,7 @@ public class Content extends AppCompatActivity  {
 
         playerView = findViewById(R.id.playerView);
 
-        //////////////////////////////////////////////////////////// OLD CODE ///////////////////////////////
-        // 1. Create a default TrackSelector
-        LoadControl loadControl = new DefaultLoadControl();
 
-//        LoadControl loadControl = new DefaultLoadControl(
-//                new DefaultAllocator(true, 16),
-//                4000, //MIN_BUFFER_DURATION
-//                7000,// MAX_BUFFER_DURATION,
-//                1500, //MIN_PLAYBACK_START_BUFFER
-//                3000, -1, true);
-
-//        DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-//        TrackSelector trackSelector = new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
-
-        //Create the player
-      //  ExoPlayer player = ExoPlayer.newSimpleInstance(Content.this,trackSelector,loadControl);
-
-        // Produces DataSource instances through which media data is loaded.
-//        DefaultHttpDataSourceFactory dataSourceFactory = new DefaultHttpDataSourceFactory("spaceZ");
-
-        //mVideoUrl = Constants.BASE_URL +"/uploaded_videos/" + username1 + "/" + filename;
-
-        // This is the MediaSource representing the media to be played.
-//        MediaSource videoSource = new SsMediaSource.Factory(dataSourceFactory)
-//                .createMediaSource(Uri.parse(mVideoUrl));// works fine :1
-
-        //Attaching the player to a view
-//        playerView.setPlayer(player);
-
-        // Prepare the player with the source.
-  //      player.prepare(videoSource);
-    //    player.setPlayWhenReady(true);
-        //setupPlayerView(playerView, mVideoUrl);
-
-
-        //////////////////////////////////////////////////////////// OLD CODE ///////////////////////////////
 
         /////////////////////////////////// REPLACE THE OLD CODE //////////////////////////////////////////
 
@@ -569,54 +461,7 @@ public class Content extends AppCompatActivity  {
                 });
     }
 
-//    class GetData extends AsyncTask<String,Void,String> {
-//        ProgressDialog progressDialog = new ProgressDialog(Content.this);
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            progressDialog.setTitle("Please wait...");
-//            progressDialog.show();
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... params) {
-//            //Running process...
-//            String stream = null;
-//            String urlString = params[0];
-//
-//            HttpDataHandler http = new HttpDataHandler();
-//            stream = http.GetHTTPData(urlString);
-//
-//            return stream;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-//
-//            //With Gson we will parse Json to class
-//            Gson gson = new Gson();
-//
-//            Type listType = new TypeToken<List<Video>>(){}.getType();
-//            videos = gson.fromJson(s, listType); //parse to List
-//
-////            VideoAdapter adapter = new VideoAdapter(getApplicationContext(), videos, username1);
-////            //lstViewVideos.setAdapter(adapter);
-////            gridView.setAdapter(adapter);
-//
-//
-//            LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
-//
-//            RecyclerView recyclerView = findViewById(R.id.recyclerview);
-//            recyclerView.setLayoutManager(layoutManager);
-//            RecyclerViewAdapterVidThumb adapterVidThumb = new RecyclerViewAdapterVidThumb(getApplicationContext(),videos,username1);
-//            recyclerView.setAdapter(adapterVidThumb);
-//
-//
-//            progressDialog.dismiss();
-//        }
-//    }
+
     //comment methods
     private void addNewComment(String name, String filename, String body, String date){
         RequestParams params = new RequestParams();
