@@ -131,77 +131,7 @@ public class UserInfo extends FragmentActivity   {
 
         username.setText(lastname+' '+firstname);
         RequestParams params = new RequestParams();
-        //params.add("user",userID);
-//        ManagerNetwork.postVideotutorialsPerUser(userID,params,new JsonHttpResponseHandler(){
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-//                super.onSuccess(statusCode, headers, response);
-//                listVidTut.setAdapter(new VidtutAdapter(response,UserInfo.this));
-//                listVidTut.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                        videotutorialSelected = videotutorials.get(position);
-//
-//                       // Toast.makeText(getApplicationContext(),String.valueOf( videotutorials.size()),Toast.LENGTH_SHORT).show();
-//                        checkStatusPayment(email,videotutorialSelected.getTitle(),videotutorialSelected.get_id(),userID);
-//
-//
-//                        //A delay 2 sec because var paymentStatus updated slowly.
-//                        final Handler handler = new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                //Do something after 100ms
-//
-//                                if(videotutorialSelected.getForSale().equals("Yes")) {
-//
-//                                    if ( paymentStatus==1 ) {
-//                                        Intent intent = new Intent(getApplication(), Videos.class);
-//                                        intent.putExtra("userid", userID);
-//                                        intent.putExtra("vidtuttitle", videotutorialSelected.getTitle());
-//                                        intent.putExtra("username", username1);
-//                                        startActivity(intent);
-//                                    } else
-//                                    if (name != null) {
-//                                        //read from server the status of payment, if approved guest can watch the video series
-//
-//                                        processPayment(videotutorialSelected.getPrice());
-//
-//                                       // Toast.makeText(getApplicationContext(), videotutorialSelected.get_id(), Toast.LENGTH_SHORT).show();
-//
-//                                    } else {
-//                                        Toast.makeText(getApplicationContext(), "Login to buy or view payed videotutorial", Toast.LENGTH_SHORT).show();
-//                                    }
-//
-//                                }else{
-//
-//                                    Intent intent = new Intent(getApplication(), Videos.class);
-//                                    intent.putExtra("userid", userID);
-//                                    intent.putExtra("vidtuttitle", videotutorialSelected.getTitle());
-//                                    intent.putExtra("username", username1);
-//                                    startActivity(intent);
-//                                }
-//                            }
-//                        }, 2000);// 2 secs delay
-//
-//
-//                    }
-//                });
-//                listVidTut.setEmptyView(noVideotutorials.findViewById(R.id.noVideotutorials));
-//            }
-//        });
-
-        //Read the data from videotutorials per selected user
-       // new GetData().execute(Common.getAddressVideotutorialsAPI(userID));
-
-//        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                //Update list of videotutorials
-//               // new GetData().execute(Common.getAddressVideotutorialsAPI(userID) );
-//                pullToRefresh.setRefreshing(false);
-//            }
-//        });
+       
 
     }
 
@@ -266,38 +196,7 @@ public class UserInfo extends FragmentActivity   {
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
         startActivityForResult(intent,PAYPAL_REQUEST_CODE);
     }
- //   @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == PAYPAL_REQUEST_CODE)
-//        {
-//            if(resultCode ==RESULT_OK)
-//            {
-//                PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-//                if(confirmation !=null)
-//                {
-//                    try{
-//                        String paymentDetails = confirmation.toJSONObject().toString(4);
-//                        startActivity(new Intent(this,PaymentDetails.class)
-//                                .putExtra("PaymentDetails", paymentDetails)
-//                                .putExtra("PaymentAmount", amount)
-//                                .putExtra("GuestName",name)
-//                                .putExtra("EmailGuest",email)
-//                                .putExtra("videotutorialtitle", videotutorialSelected.getTitle())
-//                                .putExtra("creatoruserid",videotutorialSelected.getUser())
-//                                .putExtra("videotutorial_id",videotutorialSelected.get_id())
-//                        );
-//                    }catch (JSONException e){
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//            else
-//            if(resultCode == Activity.RESULT_CANCELED)
-//                Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
-//        } else
-//        if (requestCode == PaymentActivity.RESULT_EXTRAS_INVALID)
-//            Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
-//    }
+ 
     public class  VidtutAdapter extends BaseAdapter {
         private final JSONArray jsonArray;
         private final Activity activity;
@@ -388,42 +287,5 @@ public class UserInfo extends FragmentActivity   {
             return view;
         }
     }
-    //Read data
-//    class GetData extends AsyncTask<String,Void,String> {
-//        ProgressDialog progressDialog = new ProgressDialog(UserInfo.this);
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            progressDialog.setTitle("Please wait...");
-//            progressDialog.show();
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... params) {
-//            //Running process...
-//            String stream = null;
-//            String urlString = params[0];
-//
-//            HttpDataHandler http = new HttpDataHandler();
-//            stream = http.GetHTTPData(urlString);
-//
-//            return stream;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.onPostExecute(s);
-//
-//            //With Gson we will parse Json to class
-//            Gson gson = new Gson();
-//            Type listType = new TypeToken<List<Videotutorial>>(){}.getType();
-//            videotutorials = gson.fromJson(s, listType); //parse to List
-//            VideotutorialAdapter adaptor = new VideotutorialAdapter(getApplicationContext(),videotutorials);
-//            listVidTut.setAdapter(adaptor);
-//
-//
-//            progressDialog.dismiss();
-//        }
-//    }
+  
 }
